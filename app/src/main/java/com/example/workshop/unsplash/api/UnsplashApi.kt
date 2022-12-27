@@ -7,12 +7,5 @@ import retrofit2.http.Query
 
 interface UnsplashApi {
     @GET("photos")
-    suspend fun allPhotos(
-        @Query("client_id") clientId: String
-    ) : List<Photo>
-
-    @GET("photos")
-    suspend fun allPhotosHeaders(
-        @Header("Authorization") authorization: String
-    ) : List<Photo>
+    suspend fun allPhotos() : List<Photo>
 }
