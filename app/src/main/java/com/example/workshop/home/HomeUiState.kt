@@ -7,3 +7,11 @@ data class HomeUiState(
     val photos: List<Photo>,
     val error: String?,
 )
+
+sealed class HomeUiStateV2 {
+    data class Error(val message: String) : HomeUiStateV2()
+    data class Content(val photos: List<Photo>) :
+        HomeUiStateV2()
+
+    object Loading : HomeUiStateV2()
+}
