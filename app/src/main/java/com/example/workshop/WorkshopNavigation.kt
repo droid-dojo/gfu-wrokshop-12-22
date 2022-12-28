@@ -7,8 +7,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.feature.search.ui.SearchScreen
 import com.example.workshop.home.ui.HomeScreen
-import com.example.workshop.search.ui.SearchScreen
 
 @Composable
 fun WorkshopNavigation() {

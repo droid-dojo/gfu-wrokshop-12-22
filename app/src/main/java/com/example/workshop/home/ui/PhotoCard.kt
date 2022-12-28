@@ -25,11 +25,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.workshop.unsplash.model.Photo
-import com.example.workshop.unsplash.model.User
+import com.unsplashed.client.model.Photo
+import com.unsplashed.client.model.User
 
 @Composable
-fun UserInformation(user: User, modifier: Modifier = Modifier) {
+fun UserInformation(user: com.unsplashed.client.model.User, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -48,7 +48,7 @@ fun UserInformation(user: User, modifier: Modifier = Modifier) {
             Text(text = user.name, style = MaterialTheme.typography.titleMedium)
             if (!user.location.isNullOrBlank()) {
                 Text(
-                    text = user.location,
+                    text = user.location!!,
                     style = MaterialTheme.typography.labelMedium
                 )
             }
@@ -58,7 +58,7 @@ fun UserInformation(user: User, modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PhotoCard(photo: Photo, onClick: () -> Unit) {
+fun PhotoCard(photo: com.unsplashed.client.model.Photo, onClick: () -> Unit) {
     Card(onClick = onClick) {
 
         UserInformation(
@@ -83,7 +83,7 @@ fun PhotoCard(photo: Photo, onClick: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                text = photo.description,
+                text = photo.description!!,
                 style = MaterialTheme.typography.bodyMedium
             )
         }

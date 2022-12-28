@@ -2,7 +2,7 @@ package com.example.workshop.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.workshop.unsplash.api.UnsplashApi
+import com.unsplashed.client.UnsplashedClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,17 +15,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val api: UnsplashApi) : ViewModel() {
+class HomeViewModel @Inject constructor(private val api: UnsplashedClient) : ViewModel() {
 
 
     private val _photosV2 = MutableStateFlow<HomeUiStateV2>(HomeUiStateV2.Loading)
 
     private val _photos = MutableStateFlow(
-            HomeUiState(
-                    loading = true,
-                    photos = emptyList(),
-                    error = null
-            )
+        HomeUiState(
+            loading = true,
+            photos = emptyList(),
+            error = null
+        )
     )
 
     //Compile Safety warning
@@ -57,7 +57,7 @@ class HomeViewModel @Inject constructor(private val api: UnsplashApi) : ViewMode
 
         //Content update
         try {
-            val response = api.allPhotos()
+            val response = api.getPhotos()
             _photos.update { it.copy(photos = response, loading = false, error = null) }
             _photosV2.update { HomeUiStateV2.Content(photos = response) }
         } catch (e: Exception) {

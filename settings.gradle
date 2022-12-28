@@ -14,3 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Workshop"
 include ':app'
+include ':unsplashed-android-client'
+include ':unsplashed-client'
+include ':search'

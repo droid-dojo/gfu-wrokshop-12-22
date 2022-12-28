@@ -30,12 +30,12 @@ import coil.compose.AsyncImage
 import com.example.workshop.home.HomeUiState
 import com.example.workshop.home.HomeUiStateV2
 import com.example.workshop.home.HomeViewModel
-import com.example.workshop.unsplash.model.User
+import com.unsplashed.client.model.User
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    onNavigateToUser: (User) -> Unit,
+    onNavigateToUser: (com.unsplashed.client.model.User) -> Unit,
     onNavigateToSearch: () -> Unit,
 ) {
 
@@ -66,7 +66,7 @@ fun HomeScreen(
 @Composable
 internal fun HomeScreen(
     stateV2: HomeUiStateV2,
-    onNavigateToUser: (User) -> Unit,
+    onNavigateToUser: (com.unsplashed.client.model.User) -> Unit,
     onNavigateToSearch: () -> Unit,
 ) {
     Scaffold(
