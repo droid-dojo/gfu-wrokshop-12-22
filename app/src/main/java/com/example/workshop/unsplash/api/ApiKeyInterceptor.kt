@@ -13,5 +13,5 @@ object ApiKeyInterceptor : Interceptor {
         )
     }
 
-    private const val Key = "" //TODO: REPLACE
+    private const val Key = "knOufpxjluVRpKx3PAa9-z34D7F7rg8q4JzzRQHPMfo" //TODO: REPLACE
 }

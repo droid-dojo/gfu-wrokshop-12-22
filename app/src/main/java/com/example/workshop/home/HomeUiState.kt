@@ -15,3 +15,7 @@ sealed class HomeUiStateV2 {
 
     object Loading : HomeUiStateV2()
 }
+
+sealed class HomeEvents {
+    object ShowMessage: HomeEvents()
+}

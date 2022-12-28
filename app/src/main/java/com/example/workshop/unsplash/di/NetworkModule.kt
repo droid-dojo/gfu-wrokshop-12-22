@@ -21,7 +21,7 @@ object NetworkModule {
     @Provides
     fun okhttpClient() = OkHttpClient.Builder()
         .addInterceptor(ApiKeyInterceptor)
-        .addInterceptor(Logger)
+//        .addInterceptor(Logger)
         .build()
 
     @Provides
