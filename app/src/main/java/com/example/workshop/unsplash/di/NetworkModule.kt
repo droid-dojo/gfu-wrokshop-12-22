@@ -30,7 +30,7 @@ object NetworkModule {
         val converter = json.asConverterFactory("application/json".toMediaType())
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.unsplash.com/")
+            .baseUrl("https://api.unsplash.com")
             .client(client)
             .addConverterFactory(converter)
             .build()
