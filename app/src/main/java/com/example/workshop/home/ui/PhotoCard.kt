@@ -23,13 +23,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.unsplashed.client.model.Photo
 import com.unsplashed.client.model.User
 
 @Composable
-fun UserInformation(user: com.unsplashed.client.model.User, modifier: Modifier = Modifier) {
+fun UserInformation(user: User, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -37,6 +38,7 @@ fun UserInformation(user: com.unsplashed.client.model.User, modifier: Modifier =
     ) {
         AsyncImage(
             modifier = Modifier
+                .testTag("userInfo:image")
                 .size(48.dp)
                 .clip(CircleShape)
                 .border(2.5.dp, color = MaterialTheme.colorScheme.primary, shape = CircleShape),
@@ -58,7 +60,7 @@ fun UserInformation(user: com.unsplashed.client.model.User, modifier: Modifier =
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PhotoCard(photo: com.unsplashed.client.model.Photo, onClick: () -> Unit) {
+fun PhotoCard(photo: Photo, onClick: () -> Unit) {
     Card(onClick = onClick) {
 
         UserInformation(
@@ -70,6 +72,7 @@ fun PhotoCard(photo: com.unsplashed.client.model.Photo, onClick: () -> Unit) {
 
         AsyncImage(
             modifier = Modifier
+                .testTag("image")
                 .fillMaxWidth()
                 .aspectRatio(photo.width.toFloat() / photo.height.toFloat()),
             model = photo.links.download,

@@ -87,9 +87,12 @@ internal fun HomeScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(stateV2.photos) {
-                    PhotoCard(
-                        photo = it,
-                        onClick = { onNavigateToUser(it.user) })
+//                    PhotoCard(
+//                        photo = it,
+//                        onClick = { onNavigateToUser(it.user) })
+
+                    Text(it.user)
+                    AsyncImage(model = it.url, contentDescription = null)
                 }
             }
 

@@ -4,6 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.20'
     id "org.jetbrains.kotlin.kapt"
     id 'com.google.dagger.hilt.android' version '2.44.2'
+    id 'org.jetbrains.kotlinx.kover' version '0.6.1'
 }
 
 
@@ -22,6 +23,13 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
+
     }
 
     buildTypes {
@@ -48,6 +56,33 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    sourceSets {
+        test {
+            java.srcDir "src/sharedTest/java"
+        }
+        androidTest {
+            java.srcDir "src/sharedTest/java"
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging true
+            }
+        }
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
+
 }
 
 dependencies {
@@ -60,6 +95,10 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.6.1'
 
     implementation(libs.coil)
+
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
 
     implementation platform('androidx.compose:compose-bom:2022.10.00')
     implementation 'androidx.compose.ui:ui'
@@ -76,10 +115,29 @@ dependencies {
     implementation project(":search")
 
     testImplementation 'junit:junit:4.13.2'
+
+    testImplementation 'org.robolectric:robolectric:4.9'
+
+    testImplementation 'androidx.test.ext:junit:1.1.4'
+    testImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    testImplementation platform('androidx.compose:compose-bom:2022.10.00')
+    testImplementation 'androidx.compose.ui:ui-test-junit4'
+
+
+    testImplementation "io.mockk:mockk-android:1.13.3"
+    testImplementation "io.mockk:mockk-agent:1.13.3"
+    androidTestImplementation "io.mockk:mockk-android:1.13.3"
+    androidTestImplementation "io.mockk:mockk-agent:1.13.3"
+
+    testImplementation 'io.kotest:kotest-assertions-core:5.5.4'
+    androidTestImplementation 'io.kotest:kotest-assertions-core:5.5.4'
+
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    debugImplementation 'androidx.compose.ui:ui-tooling'
-    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    implementation 'androidx.compose.ui:ui-tooling'
+    implementation 'androidx.compose.ui:ui-test-manifest'
 }

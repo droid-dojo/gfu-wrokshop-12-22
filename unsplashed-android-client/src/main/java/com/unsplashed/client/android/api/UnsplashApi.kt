@@ -6,9 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 internal interface UnsplashApi {
-    @GET("photos")
-    suspend fun allPhotos(): List<com.unsplashed.client.model.Photo>
+    @GET("photos?limit=50")
+    suspend fun allPhotos(): List<Photo>
 
     @GET("search/photos")
-    suspend fun searchPhotos(@Query("query") search: String) : com.unsplashed.client.model.SearchResultPage
+    suspend fun searchPhotos(@Query("query") search: String): SearchResultPage
 }
