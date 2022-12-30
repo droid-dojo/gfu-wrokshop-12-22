@@ -1,6 +1,7 @@
 [versions]
 coil = "2.2.2"
 room = "2.4.3"
+workmanager = "2.7.1"
 
 [libraries]
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
@@ -8,3 +9,5 @@ coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+
+work = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
